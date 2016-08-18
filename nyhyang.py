@@ -10,24 +10,25 @@
 ###############################################################################
 # Write f01 that prints "Hello World!" and calls f02. (three lines)
 def f01():
-
+    print("Hello World!")
     f02()
 
 
 ###############################################################################
 # Write f02 that sets the variables x, y, and z equal to the words
 # necessary to have the f03 print "i love python!" (five lines)
-
-
-
-
+def f02(x, y, z):
+    x = "i "
+    y = "love "
+    z = "python!"
+    print(x + y + z)
     f03(x, y, z)  # Last line in f2()
 
 
 ###############################################################################
 # Finish f03 (replace the ????).
 def f03(*words):
-    truth = " ".????(words)  # This is broken.
+    truth = " ".join(words)  # This is broken.
     truth_emphasized = truth + "!"
     print(truth_emphasized)
     f04(truth)  # Last line in f03()
@@ -37,12 +38,12 @@ def f03(*words):
 # Write f04 that prints truth backwards (edit one line only)
 # Ex. f4("Littlest Bear") prints "raeB tselttiL"
 def f04(string):
-
+    print(string[-1:])
     f05(string)  # Last line in f04()
 
 
 ###############################################################################
-# Write f05 that for each char in a word passed as a parameter, prints that
+# Write f05 that for each char in a string passed as a parameter, prints that
 # word on a new line, and for each consecutive print, prints it indented by one
 # more char. (possibly a few lines)
 # Ex. f05("Info")
@@ -51,6 +52,10 @@ def f04(string):
 #   Info
 #    Info
 def f05(word):
+    total_lines = len(word)
+    for x in range(1, (total_lines + 1)):
+        print((" " * x) + word)
+
 
 
 
@@ -71,9 +76,24 @@ def f05(word):
 # 'longer_string' is longer than 'short_string' by 1 chars
 # 'short_string' has only 92.31% the number of chars of longer_string
 def f06(string1, string2):
+    # compare the length
+    length1 = len(string1)
+    length2 = len(string2)
+    difference = abs(length1 - length2)
+    if length1 > length2:
+        print("{} is longer than {} by {} chars.".format(string1, string2, difference))
+    elif length1 < length2:
+        print("{} is longer than {} by {} chars.".format(string2, string1, difference))
+    else:
+        print("They have the same length.")
 
-
-
+    count = 0 
+    for char in string1:
+        if char in string2:
+            count += 1
+    return count 
+    percentage = (count / length2) * 100
+    print("{} has only {:.2f} the number of chars of {}.".format(string1, percentage, string2))
 
 
 
@@ -112,23 +132,57 @@ def various_solutions():
 
 
 ###############################################################################
+# find the sum of all the multiples of 3 or 5
+# below 500 (starting at 1)
 def f07():
-    ...
+    sum_all = 0
+    number = 0
+    while number <= 500:
+        if number % 3 == 0:
+            sum_all += number
+        elif number % 5 == 0:
+            sum_all += number 
+        number += 1
+    return sum_all
+
+
+
+    
 
 
 ###############################################################################
 def f08():
-    ...
+    count = 0
+    for x in range(1, 501):
+        if x % 3 == 0:
+            count += x
+        elif x % 5 == 0:
+            count += x
+    return count
 
 
 ###############################################################################
 def f09():
-    ...
+    lst_three = []
+    lst_five = []
+    lst_fifteen = []
+    for x in range(1, 501):
+        if x % 3 == 0:
+            lst_three.append(x)
+        elif x % 5 == 0:
+            lst_five.append(x)
+        elif x % 15 == 0:
+            lst_fifteen.append(x)
+    sum_of_all = sum(lst_three) + sum(lst_five) - sum(lst_fifteen) 
 
 
 ###############################################################################
-def f10():
-    ...
+def f10(range_start, range_end):
+    sum_all = 0
+    for x in range(range_start, range_end+1):
+        if (x % 3 == 0) or (x % 5 ==0):
+            sum_all += x
+    return sum_all
 
 
 ###############################################################################
@@ -136,7 +190,13 @@ def f10():
 # strings, integers if they started as floats, and as the value 0 if they
 # started as ints.
 def f11(args):
-    ...
+    for x in args:
+        if isinstance(x, str) == True:
+            print("floats")
+        elif isinstance(x, float) == True:
+            print("integer")
+        elif isinstance(x, int) == True:
+            print(0)
 
 
 ###############################################################################
@@ -152,7 +212,8 @@ def f11(args):
 # Ex. printing
 #   [1.0, 1.3, 2.443]
 def f12():
-    ...
+    user_input = float(input("Please enter something: "))
+    with open('log_file.txt', 'w') as fout:
 
 
 
@@ -332,5 +393,9 @@ def main():
 
 
 # Write the boilerplate code. (two lines, plus empty line at end)
+def main():
 
+
+if __name__ == '__main__':
+    main()
 
